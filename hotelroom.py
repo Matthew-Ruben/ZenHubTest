@@ -1,7 +1,6 @@
 
 def main():
 	room1 = HotelRoom("Room 1")
-	print(f'{room1.}')
 	
 if __name__ == '__main__':
 	main()
@@ -69,5 +68,28 @@ class HotelRoom:
 		new_room = HotelRoom(f'{self.name} & {other.name}')
 		new_room.set_price(self.price + other.price)
 		if self.status == 'Booked' or other.status == 'Booked':
-		    new_room.book_room()
+			new_room.book_room()
 		return new_room
+
+	def __getattr__(self, attr_called):
+		"""
+		Corrects a common misspelling and provides an error message for
+		other mistaken attribute names
+		:param attr_called: (string) attribute incorrectly called by a
+		programmer
+		:return: (string) proper attribute or an error message if none
+		can be found
+		"""
+		if attr_called == 'stats':
+			return self.status
+		else:
+			return f'There is no such attribute: self.{attr_called}'
+
+	def __getattribute__(self, attr_name):
+		"""
+		Gets attribute {attr_name}
+		:param attr_name: (string) attribute to get
+		:return: (object) the value of the attribute object
+		"""
+		value = super().__getattribute__(attr_name)
+		return value
