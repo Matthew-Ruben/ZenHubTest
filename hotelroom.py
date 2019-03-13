@@ -21,6 +21,7 @@ class HotelRoom:
 		self.name = room_name
 		self.price = 0
 		self.status = 'Unbooked'
+		self.merge_conflict_checker = 5
 		self.add_room()
 	
 	@classmethod
