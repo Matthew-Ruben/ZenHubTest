@@ -29,6 +29,19 @@ class HotelRoom:
 		Increments room counter
 		"""
 		cls.room_count += 1
+		
+	def book_room(self):
+        """
+        Sets the status of the room to booked
+        """
+        self.status = 'Booked'
+
+    def set_price(self, price):
+        """
+        Assigns a price to the room
+        :param price: (number) price to be charged for booking this room
+        """
+        self.price = price
 	
 	def __lt__(self, other):
         """
